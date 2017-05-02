@@ -11,5 +11,3 @@ I'm a MSc student in Condensed Matter Theory the Department of Physics at McGill
 * Computational methods for Nonlinear Langevin equations
 
 If you're interested in these, or other, topics in classical condensed matter check our the works of my advisor and others in the research group [here](http://www.physics.mcgill.ca/~provatas/.index.html)
-
-
