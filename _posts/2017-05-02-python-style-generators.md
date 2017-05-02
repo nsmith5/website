@@ -5,7 +5,7 @@ date:   2017-05-02 13:39:00
 categories: julia generators
 ---
 
-Blah blah, generators
+blah blah blah
 
 ```julia
 julia> using PyGen
@@ -22,4 +22,5 @@ pascal (generic function with 1 method)
 julia> n = 20;
 
 julia> sum(pascal(n)) == n * (n + 1) / 2
+true
 ```

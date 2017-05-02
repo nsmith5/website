@@ -1,12 +1,12 @@
 baseurl: /website
-title: Tufte-Jekyll
-subtitle: Content-centric blogging
-author: clay harmon
+title: Nathan Smith
+subtitle: Physicist, Data Scientist etc..
+author: Nathan Smith
 simple_search: http://google.com/search
-description: A Jekyll theme for content-rich sites
-name: tufte
+description: Thoughts on programming, physics, life etc.
+name: website
 markdown: kramdown
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+markdown_ext: "md"
 permalink: /articles/:short_year/:title
 timezone: America/New_York
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
@@ -17,7 +17,7 @@ post:
 page:
   template: _page.txt
   extension: md
-editor: gvim
+editor: vim
 git:
   branch: master
 transfer:
