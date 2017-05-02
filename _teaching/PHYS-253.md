@@ -1,3 +1,7 @@
+---
+layout: post
+title: Thermal Physics - PHYS 253
+---
 
 There is a huge amount of free resources available to you to help you through the course. Below is a list of Lecture notes and textbooks that are available either online or downloadable as a pdf. Some of these resources are only available through the McGill Library. If that is the case you'll be able to access them either while connected to the McGill wifi or VPN or by searching for them in the online catalogue.
 

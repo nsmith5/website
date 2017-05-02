@@ -1,7 +1,9 @@
 ---
-layout: full-width
+layout: page
 title: About
 ---
+
+{% marginfigure 'id-etc' 'assets/img/me.png' '' %}
 
 I'm a MSc student in Condensed Matter Theory the Department of Physics at McGill University. My specific interests are in solidification of pure and alloy systems including the following topics:
 
