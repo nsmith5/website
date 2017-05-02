@@ -1,6 +1,6 @@
 ---
-layout: page
+layout: post
 title: Statistical Mechanics - PHYS 326
 ---
 
-# Statistica Mechanics
+# Statistical Mechanics
