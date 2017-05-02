@@ -3,12 +3,13 @@ layout: full-width
 title: About
 ---
 
-The *Tufte-Jekyll* theme is a natural extension of the work done by [Edward Tufte](https://github.com/edwardtufte/tufte-css) and his collaborators on Github who created a CSS file that allows web writers to use the same simple and elegant style employed in his published materials.
+I'm a MSc student in Condensed Matter Theory the Department of Physics at McGill University. My specific interests are in solidification of pure and alloy systems including the following topics:
 
-To incorporate these styles into a Jekyll theme, I have made some very slight modifications that attempt to maintain the feel of the CSS styles in his Github repo.
+* Novel kinetic pathways in alloy systems
+* Formation of secondary phases and other nonequilibrium phases
+* Building quantitive theories of solidification at diffusive time scales
+* Computational methods for Nonlinear Langevin equations
 
-Note that this is a full-width layout. This was accomplished by including ```layout: full-width``` in the YAML front matter for this page. Keep in mind that all the Tufte-Jekyll sidenote and marginnote goodness will not work on full-width layouts! 
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll).
+If you're interested in these, or other, topics in classical condensed matter check our the works of my advisor and others in the research group here
 
 

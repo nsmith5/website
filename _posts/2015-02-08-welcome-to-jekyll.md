@@ -10,13 +10,22 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+```julia
+julia> using PyGen
+
+julia> @pygen function pascal(n)
+	      i = 0
+	      while i <= n
+	          yield(i)
+	          i += 1
+	      end
+	  end
+pascal (generic function with 1 method)
+
+julia> n = 20;
+
+julia> sum(pascal(n)) == n * (n + 1) / 2
+```
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
 
