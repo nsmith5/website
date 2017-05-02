@@ -1,22 +1,43 @@
+markdown: kramdown
+highlighter: rouge
+
+repository: https://github.com/nsmith5/website
+timezone: America/New_York
+
+defaults:
+  -
+    scope: 
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "_teaching"
+      type: "teaching"
+    values:
+      layout: "default"
+
+collections:
+  posts:
+    permalink: /:collection/:year/:month/:day/:title
+    output: true
+  teaching: 
+    permalink: /:collection/:title
+    output: true
+
+name: Nathan Smith ;; Physicist, Data Scientist etc..
+description: Thoughs on progamming, physics, teaching etc..
 baseurl: /website
-title: Nathan Smith
-subtitle: Physicist, Data Scientist etc..
 author: Nathan Smith
 simple_search: http://google.com/search
-description: Thoughts on programming, physics, life etc.
-name: website
-markdown: kramdown
-markdown_ext: "md"
-permalink: /articles/:short_year/:title
-timezone: America/New_York
+
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
-exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'UploadToGithub.Rakefile', 'README.md']
-post:
-  template: _post.txt
-  extension: md
-page:
-  template: _page.txt
-  extension: md
-editor: vim
-git:
-  branch: master
+
+exclude: [
+  'Gemfile', 
+  'Gemfile.lock', 
+  'Rakefile',
+  'README.md'
+]
+

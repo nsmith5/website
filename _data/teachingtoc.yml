@@ -1,9 +1,18 @@
 # Teaching Table of Contents
-- title: Teaching
-  toc:
-  - Home
-  - Statistical Mechanics
-  - Thermal Physics
-  - Electricity and Magnetism
-  - Waves and Modern Physics
-  - Linear Algebra
+title: Teaching
+  
+docs:
+
+- title: Home
+  url: teaching.html
+
+- title: Statistical Mechanics
+  url: teaching/
+
+- title: Thermal Physics
+
+- title: Electricity and Magnetism
+
+- title: Waves and Modern Physics
+
+- title: Linear Algebra

@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+<h2>{{ site.data.teachingtoc.title}}</h2>
+<ul>
+   {% for item in site.data.teachingtoc.docs %}
+      <li><a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a></li>
+   {% endfor %}
+</ul>
+
+{{content}}
