@@ -28,8 +28,9 @@ collections:
 
 name: Nathan Smith ;; Physicist, Data Scientist etc..
 description: Thoughs on progamming, physics, teaching etc..
-baseurl: http://nathan-smith.ca/
 author: Nathan Smith
+url: nathan-smith.ca
+
 simple_search: http://google.com/search
 
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
