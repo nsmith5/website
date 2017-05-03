@@ -35,6 +35,10 @@ Notes on the 2-state system example can be found [here](http://nathan-smith.ca/d
 ## Tutorial #6
 Notes on Monte Carlo methods and solutions to the second problem set can be found [here](http://nathan-smith.ca/documents/Tutorial6.pdf)
 
+## Finite size effect and the Ising Model
+
+There was a lot of trouble with the finite size effect on assignment 4. Take a look [here](posts/2017/05/ising) for a discussion about the finite size affect and a simple implemenation of the the Ising model in the Julia programming language.
+
 ## Extra Extra Reading
 Here is a list of addition resources pertaining to the second half of the course. For almost all of them you'll need to search for them through the McGill library to gain access, access them while on the campus network or through the VPN.
 
