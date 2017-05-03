@@ -34,5 +34,5 @@ simple_search: http://google.com/search
 
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 
-exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
+exclude: ['vendor', 'Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 
