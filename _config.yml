@@ -20,10 +20,10 @@ defaults:
 
 collections:
   posts:
-    permalink: /:collection/:year/:month/:title
+    permalink: /:collection/:year/:month/:title/
     output: true
   teaching: 
-    permalink: /:collection/:title
+    permalink: /:collection/:title/
     output: true
 
 name: Nathan Smith ;; Physicist, Data Scientist etc..
