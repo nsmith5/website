@@ -3,4 +3,6 @@ s3_secret: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 s3_bucket: nathan-smith.ca
 s3_endpoint: ca-central-1
 
-ignore_on_server: documents
+ignore_on_server: 
+ - documents/*
+ - documents
