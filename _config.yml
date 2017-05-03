@@ -14,13 +14,13 @@ defaults:
   -
     scope:
       path: "_teaching"
-      type: "teaching"
+      type: "pages"
     values:
       layout: "default"
 
 collections:
   posts:
-    permalink: /:collection/:year/:month/:day/:title
+    permalink: /:collection/:year/:month/:title
     output: true
   teaching: 
     permalink: /:collection/:title
@@ -34,10 +34,5 @@ simple_search: http://google.com/search
 
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 
-exclude: [
-  'Gemfile', 
-  'Gemfile.lock', 
-  'Rakefile',
-  'README.md'
-]
+exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 
