@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Blog</title>
+  <title>About</title>
   <meta name="description" content="Thoughs on progamming, physics, teaching etc..">
 
   <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
@@ -21,12 +21,12 @@
   <link rel="stylesheet" type="text/css" href="/css/tufte.css">
   <!-- <link rel="stylesheet" type="text/css" href="/css/print.css" media="print"> -->
 
-  <link rel="canonical" href="nathan-smith.ca/">
+  <link rel="canonical" href="nathan-smith.ca/about.html">
 
   <link rel="alternate" type="application/rss+xml" title="" href="nathan-smith.ca/feed.xml" />
 </head>
 
-  <body class="full-width">
+  <body>
     <!--- Header and nav template site-wide -->
 <header>
     <nav class="group">
@@ -36,7 +36,9 @@
 			
 				
 		    	
-		      	<a href="/about.html">About</a>
+		      	<a class="active" href="/about.html" class="active">
+							About
+						</a>
 		    	
 	    	
   		
@@ -44,9 +46,7 @@
   		
 				
 		    	
-		      	<a class="active" href="/" class="active">
-							Blog
-						</a>
+		      	<a href="/">Blog</a>
 		    	
 	    	
   		
@@ -62,28 +62,25 @@
   		
 		</nav>
 </header>
-    <article>
-        <h1 class="content-listing-header sans">Articles</h1>
-  <ul class="content-listing ">
-          
-        <li class="listing">
-          <hr class="slender">
-          <a href="/posts/2017/05/ising/">
-            <h3 class="contrast">Exploring the Ising Model Finite Size Effects using Julia</h3>
-          </a>
-          <br><span class="smaller">May 2, 2017</span>  <br/>
-          <div><p>In this post we’ll look at the finite size effect in the Ising model. We start by start by stating the energy of this Ising model,</p>
+    <article class="group">
+      <h1>About</h1>
 
-<div class="mathblock"><script type="math/tex; mode=display">
-E = - J \sum_{\langle i, j\rangle} s_i s_j - H \sum_{i} s_i.
-</script></div>
+<p><label for="id-etc" class="margin-toggle">⊕</label><input type="checkbox" id="id-etc" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/img/me.png" /><br /></span></p>
 
-</div> 
-        </li>
-    
-  </ul>
+<p>I’m a MSc student in Condensed Matter Theory the Department of Physics at McGill University. My specific interests are in solidification of pure and alloy systems including the following topics:</p>
+
+<ul>
+  <li>Novel kinetic pathways in alloy systems</li>
+  <li>Formation of secondary phases and other nonequilibrium phases</li>
+  <li>Building quantitive theories of solidification at diffusive time scales</li>
+  <li>Computational methods for Nonlinear Langevin equations</li>
+</ul>
+
+<p>If you’re interested in these, or other, topics in classical condensed matter check our the works of my advisor and others in the research group <a href="http://www.physics.mcgill.ca/~provatas/.index.html">here</a></p>
+
+
     </article>
-    <span class="print-footer">Blog - Nathan Smith</span>
+    <span class="print-footer">About - Nathan Smith</span>
     <footer>
   <hr class="slender">
   <ul class="footer-links">

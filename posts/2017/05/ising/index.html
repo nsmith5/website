@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Exploring the Ising Model Finite Size Effects using Julia</title>
+  <meta name="description" content="In this post we’ll look at the finite size effect in the Ising model. We start by start by stating the energy of this Ising model,">
+
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
+  
+  <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
+
+
+  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  <link rel="stylesheet" type="text/css" href="/css/tufte.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/css/print.css" media="print"> -->
+
+  <link rel="canonical" href="nathan-smith.ca/posts/2017/05/ising/">
+
+  <link rel="alternate" type="application/rss+xml" title="" href="nathan-smith.ca/feed.xml" />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+    <nav class="group">
+			<a href="/">
+				<img class="badge" src="/assets/img/knot.png" alt="CH">
+			</a>
+			
+				
+		    	
+		      	<a href="/about.html">About</a>
+		    	
+	    	
+  		
+				
+  		
+				
+		    	
+		      	<a href="/">Blog</a>
+		    	
+	    	
+  		
+				
+  		
+				
+		    	
+		      	<a href="/teaching.html">Teaching</a>
+		    	
+	    	
+  		
+				
+  		
+		</nav>
+</header>
+    <article class="group">
+      <h1>Exploring the Ising Model Finite Size Effects using Julia</h1>
+<p class="subtitle">May 2, 2017</p>
+
+<p>In this post we’ll look at the finite size effect in the Ising model. We start by start by stating the energy of this Ising model,</p>
+
+<div class="mathblock"><script type="math/tex; mode=display">
+E = - J \sum_{\langle i, j\rangle} s_i s_j - H \sum_{i} s_i.
+</script></div>
+<!--more-->
+<p>Where, <span>​<script type="math/tex">\langle i, j \rangle</script></span> denotes the sum over nearest neighbour interactions. If we restrict ourselves to a square lattice with periodic boundary conditions we commute this energy as follows</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="k">function</span><span class="nf"> energy</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+    <span class="c"># J = 1, H = 0</span>
+    <span class="n">sum</span><span class="x">(</span><span class="o">-</span> <span class="n">S</span> <span class="o">.*</span> <span class="x">(</span><span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">0</span><span class="x">))</span> <span class="o">.+</span> <span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="mi">1</span><span class="x">))))</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>energy (generic function with 1 method)
+</code></pre>
+</div>
+
+<p>We would like to look at this system in equilibrium so we’ll need a method of sampling the equilibrium distribtion. We can do this by constructing a Markov process that modifies the lattice spin by spin that has an equilibrium distribution equal to our desired Boltzmann distribution.</p>
+
+<p>This can be acheived using the Metropolis<label for="id-thing" class="margin-toggle sidenote-number"></label><input type="checkbox" id="id-thing" class="margin-toggle" /><span class="sidenote">Interestly, there is a fair amount of drama surrounding the origins of this algorithm. Details at <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm#History">Wikipedia</a> </span> algorithm for the transition rates for each spin.</p>
+
+<div class="mathblock"><script type="math/tex; mode=display">
+W(s \rightarrow s^\prime) = \min\left(1, e^{-\beta\Delta E(s, s^\prime)}\right)
+</script></div>
+
+<p>We can consider one Markov step to be choosing a spin at random from the lattice and then flipping it with a probability consistent with the Metropolis transition frequency.</p>
+
+<p>If we want to try flipping all the spins at once, we can do that too with a few caveats. If we use the Metropolis transition rates we will quickly enter an oscillatory regime. To avoid that we can multiply the transition frequencies by a constant <span>​<script type="math/tex">\alpha </script></span>. This works because the detailed balance is maintained when we multiply both transition frequencies by the same constant.</p>
+
+<div class="mathblock"><script type="math/tex; mode=display">
+W(s \rightarrow s^\prime) = \min\left(\alpha, \alpha e^{-\beta\Delta E(s, s^\prime)}\right)
+</script></div>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="c"># Flip a spin with the modified Metropolis rate </span>
+<span class="k">function</span><span class="nf"> flip</span><span class="x">(</span><span class="n">s</span><span class="x">,</span> <span class="n">ΔE</span><span class="x">,</span> <span class="n">β</span><span class="x">)</span>
+    <span class="c"># α = 0.3</span>
+    <span class="k">if</span> <span class="n">ΔE</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="n">rand</span><span class="x">()</span> <span class="o">&lt;</span> <span class="mf">0.3</span> <span class="o">?</span> <span class="x">(</span><span class="k">return</span> <span class="o">-</span><span class="n">s</span><span class="x">)</span> <span class="x">:</span> <span class="x">(</span><span class="k">return</span> <span class="n">s</span><span class="x">)</span>
+    <span class="k">else</span>
+        <span class="n">rand</span><span class="x">()</span> <span class="o">&lt;</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">exp</span><span class="x">(</span><span class="o">-</span> <span class="n">β</span> <span class="o">*</span> <span class="n">ΔE</span><span class="x">)</span> <span class="o">?</span> <span class="x">(</span><span class="k">return</span> <span class="o">-</span><span class="n">s</span><span class="x">)</span> <span class="x">:</span> 
+            <span class="x">(</span><span class="k">return</span> <span class="n">s</span><span class="x">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Step Lattice one Markov step forward in "time"</span>
+<span class="k">function</span><span class="nf"> step</span><span class="o">!</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="n">β</span><span class="x">)</span>
+    <span class="n">ΔE</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">S</span> <span class="o">.*</span> <span class="x">(</span><span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="mi">1</span><span class="x">))</span> <span class="o">.+</span> 
+                   <span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="o">-</span><span class="mi">1</span><span class="x">))</span> <span class="o">.+</span>
+                   <span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">0</span><span class="x">))</span> <span class="o">.+</span>
+                   <span class="n">circshift</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="x">(</span><span class="o">-</span><span class="mi">1</span><span class="x">,</span> <span class="mi">0</span><span class="x">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+        <span class="n">S</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">=</span> <span class="n">flip</span><span class="x">(</span><span class="n">S</span><span class="x">[</span><span class="n">i</span><span class="x">],</span> <span class="n">ΔE</span><span class="x">[</span><span class="n">i</span><span class="x">],</span> <span class="n">β</span><span class="x">)</span>
+    <span class="k">end</span>    
+    <span class="k">return</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>step! (generic function with 1 method)
+</code></pre>
+</div>
+
+<h2 id="measuring-equilibrium-statistics">Measuring Equilibrium Statistics</h2>
+
+<p>Now we’d like to measure equilibrium statistics across a variety of temperatures. If we start with the very high temperatures with an initial condition that is random we won’t need to wait for equilibrium of the Markov process before we start to sample.</p>
+
+<p>First we need a method to compute energy statistics at a single temperature though.</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="k">function</span><span class="nf"> energy_stats</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="n">β</span><span class="x">;</span> <span class="n">samples</span> <span class="o">=</span> <span class="mi">100</span><span class="x">)</span>
+    <span class="c"># Mean and variance of the energy at temperature β</span>
+    
+    <span class="n">energies</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">[]</span>
+    
+    <span class="k">for</span> <span class="n">sample</span> <span class="k">in</span> <span class="mi">1</span><span class="x">:</span><span class="n">samples</span>
+        <span class="n">step!</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="n">β</span><span class="x">)</span>
+        <span class="n">push!</span><span class="x">(</span><span class="n">energies</span><span class="x">,</span> <span class="n">energy</span><span class="x">(</span><span class="n">S</span><span class="x">))</span>
+    <span class="k">end</span>
+   
+    <span class="n">meanE</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">energies</span><span class="x">)</span>
+    <span class="n">varE</span> <span class="o">=</span> <span class="n">mean</span><span class="x">((</span><span class="n">i</span> <span class="o">-</span> <span class="n">meanE</span><span class="x">)</span><span class="o">^</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">energies</span><span class="x">)</span>
+    
+    <span class="k">return</span> <span class="n">meanE</span> <span class="o">/</span> <span class="n">length</span><span class="x">(</span><span class="n">S</span><span class="x">),</span> <span class="n">varE</span> <span class="o">/</span> <span class="n">length</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>energy_stats (generic function with 1 method)
+</code></pre>
+</div>
+
+<p>Now we can make a function to do a temperature sweep for lattices of a given size over a particular temperature range</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="k">function</span><span class="nf"> sweep</span><span class="x">(</span><span class="n">N</span><span class="x">,</span> <span class="n">Trange</span><span class="x">;</span> <span class="n">smpl_per_temp</span><span class="o">=</span><span class="mi">100</span><span class="x">)</span>
+    
+    <span class="n">Trange</span> <span class="o">=</span> <span class="n">reverse</span><span class="x">(</span><span class="n">Trange</span><span class="x">)</span>  
+    
+    <span class="n">S</span> <span class="o">=</span> <span class="n">rand</span><span class="x">([</span><span class="mf">1.0</span><span class="x">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="x">],</span> <span class="x">(</span><span class="n">N</span><span class="x">,</span> <span class="n">N</span><span class="x">))</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">[]</span>
+    <span class="n">vars</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">[]</span>
+    
+    <span class="k">for</span> <span class="x">(</span><span class="n">i</span><span class="x">,</span> <span class="n">T</span><span class="x">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="x">(</span><span class="n">Trange</span><span class="x">)</span>
+        <span class="n">m</span><span class="x">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">energy_stats</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="n">T</span><span class="o">^</span><span class="x">(</span><span class="o">-</span><span class="mi">1</span><span class="x">),</span> <span class="n">samples</span><span class="o">=</span><span class="n">smpl_per_temp</span><span class="x">)</span>
+        <span class="n">push!</span><span class="x">(</span><span class="n">means</span><span class="x">,</span> <span class="n">m</span><span class="x">)</span>
+        <span class="n">push!</span><span class="x">(</span><span class="n">vars</span><span class="x">,</span> <span class="n">v</span><span class="x">)</span>
+    <span class="k">end</span>
+    
+    <span class="k">return</span> <span class="n">reverse</span><span class="x">(</span><span class="n">means</span><span class="x">),</span> <span class="n">reverse</span><span class="x">(</span><span class="n">vars</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>sweep (generic function with 1 method)
+</code></pre>
+</div>
+
+<h2 id="visualization">Visualization</h2>
+
+<p>Ok, now that we’ve got all the technical details out of the way lets brew up some visualization so we can make sure things are working as we might expect. Unicode is a great asset here.</p>
+
+<p>With a pretty printing function <code class="highlighter-rouge">pprint</code> in hand lets do a little animation to see things are working.</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="k">function</span><span class="nf"> pprint</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+    <span class="n">N</span><span class="x">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="x">:</span><span class="n">N</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="x">:</span><span class="n">M</span>
+            <span class="n">S</span><span class="x">[</span><span class="n">i</span><span class="x">,</span> <span class="n">j</span><span class="x">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">print</span><span class="x">(</span><span class="s">"⬛"</span><span class="x">)</span> <span class="x">:</span> <span class="n">print</span><span class="x">(</span><span class="s">"⬜"</span><span class="x">)</span>
+        <span class="k">end</span>
+        <span class="n">print</span><span class="x">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="x">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># In a Jupyter notebook we can make</span>
+<span class="c"># a small animation in the output cell</span>
+<span class="n">using</span> <span class="n">IJulia</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">rand</span><span class="x">([</span><span class="mf">1.0</span><span class="x">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="x">],</span> <span class="x">(</span><span class="mi">20</span><span class="x">,</span> <span class="mi">20</span><span class="x">))</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">3.0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="x">:</span><span class="mi">40</span>
+    
+    <span class="n">step!</span><span class="x">(</span><span class="n">S</span><span class="x">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">T</span><span class="x">)</span>
+    <span class="n">IJulia</span><span class="o">.</span><span class="n">clear_output</span><span class="x">(</span><span class="n">true</span><span class="x">)</span>
+    <span class="n">pprint</span><span class="x">(</span><span class="n">S</span><span class="x">)</span>
+    
+    <span class="n">sleep</span><span class="x">(</span><span class="mf">0.1</span><span class="x">)</span>    
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+⬛⬛⬜⬜⬜⬜⬛⬛⬛⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜⬛
+⬛⬜⬛⬜⬛⬛⬛⬛⬜⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜
+⬛⬜⬜⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬛⬛⬜⬜⬜⬜
+⬜⬛⬜⬜⬜⬜⬜⬜⬛⬛⬛⬛⬛⬛⬛⬛⬜⬜⬜⬜
+⬜⬛⬜⬜⬛⬛⬛⬜⬛⬛⬛⬜⬛⬛⬜⬜⬛⬛⬜⬜
+⬜⬜⬜⬜⬜⬜⬛⬛⬜⬛⬛⬜⬛⬛⬜⬛⬛⬜⬜⬜
+⬜⬛⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬛⬜⬜⬛⬜⬛⬜⬜
+⬜⬜⬜⬜⬜⬛⬛⬛⬛⬛⬜⬜⬜⬜⬛⬛⬛⬛⬜⬛
+⬜⬜⬜⬜⬜⬜⬛⬛⬛⬜⬜⬜⬛⬜⬛⬛⬛⬛⬜⬛
+⬜⬜⬜⬜⬜⬜⬜⬛⬛⬛⬛⬛⬜⬛⬛⬛⬜⬜⬜⬜
+⬜⬜⬜⬜⬛⬛⬜⬛⬜⬛⬛⬜⬛⬜⬜⬜⬜⬜⬜⬛
+⬜⬜⬜⬜⬛⬛⬛⬜⬜⬜⬜⬜⬛⬜⬜⬜⬛⬛⬛⬛
+⬜⬜⬜⬜⬜⬜⬛⬛⬜⬜⬜⬜⬛⬜⬛⬛⬜⬛⬜⬜
+⬜⬛⬜⬜⬛⬜⬛⬛⬛⬛⬛⬜⬜⬛⬜⬜⬜⬜⬜⬜
+⬜⬛⬜⬛⬛⬜⬜⬜⬜⬜⬛⬛⬜⬛⬜⬜⬜⬜⬜⬛
+⬛⬛⬛⬛⬛⬜⬛⬜⬛⬛⬜⬛⬜⬜⬜⬜⬜⬜⬜⬛
+⬛⬛⬛⬛⬜⬛⬜⬛⬛⬛⬜⬜⬜⬜⬛⬛⬜⬜⬜⬛
+⬛⬛⬜⬛⬜⬜⬜⬛⬛⬛⬜⬛⬜⬛⬛⬛⬛⬜⬛⬛
+⬛⬛⬛⬛⬜⬜⬜⬜⬜⬛⬛⬜⬛⬜⬛⬜⬜⬜⬛⬛
+⬛⬛⬛⬛⬜⬛⬜⬛⬜⬜⬜⬛⬜⬛⬛⬜⬜⬛⬛⬛
+</code></pre>
+</div>
+
+<p>Lovely! Lets get some results then!</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="c"># Perform a sweep to check for phase transition</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span><span class="x">:</span><span class="mf">0.05</span><span class="x">:</span><span class="mf">4.0</span>
+
+<span class="n">means</span><span class="x">,</span> <span class="n">vars</span> <span class="o">=</span> <span class="n">sweep</span><span class="x">(</span><span class="mi">20</span><span class="x">,</span> <span class="n">T</span><span class="x">,</span> <span class="n">smpl_per_temp</span><span class="o">=</span><span class="mi">20000</span><span class="x">)</span>
+
+<span class="c"># Cᵥ = (kb*T²)⁻¹⟨ΔE²⟩</span>
+<span class="n">Cᵥ</span> <span class="o">=</span> <span class="n">vars</span> <span class="o">./</span> <span class="n">T</span><span class="o">.^</span><span class="mi">2</span><span class="x">;</span>
+</code></pre>
+</div>
+
+<h2 id="-c_vt--and--et--results"><span>​<script type="math/tex"> C_v(T) </script></span> and <span>​<script type="math/tex"> E(T) </script></span> Results</h2>
+
+<p>Performing a temperature sweep on a 20 x 20 lattice with 20000 samples per temperature, we see the characteristic divergence of the heat capacity around <span>​<script type="math/tex"> T_c </script></span>. Note that the theoretical result for <span>​<script type="math/tex"> T_c </script></span> in the thermodynamic limit is,</p>
+
+<div class="mathblock"><script type="math/tex; mode=display">
+T_c = \frac{2}{\ln\left(2 + \sqrt(2)\right)} \approx 2.2691...
+</script></div>
+
+<figure><figcaption>Energy and Heat Capacity per unity spin of the 20 x 20 Ising model lattice</figcaption><img src="/assets/posts/output_14_0.png" /></figure>
+
+<p>The key question here is, how accurate are those results? While we know the theoretical solution in the case of the 2D Ising model, in more general circumstances we need to ask: how do we know if the answer has converged? The answer, as per usual, is in the <em>limit</em>. As we examine larger and larger lattices, we look for convergence in the solution.</p>
+
+<div class="language-julia highlighter-rouge"><pre class="highlight"><code>
+<span class="c"># Sweep of lattices sizes from 2 -&gt; 48</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="x">[</span><span class="mi">2</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">8</span><span class="x">,</span> <span class="mi">16</span><span class="x">,</span> <span class="mi">24</span><span class="x">,</span> <span class="mi">48</span><span class="x">]</span>
+<span class="n">smpls</span> <span class="o">=</span> <span class="x">[</span><span class="mi">30000</span><span class="x">,</span> <span class="mi">30000</span><span class="x">,</span> <span class="mi">10000</span><span class="x">,</span> <span class="mi">10000</span><span class="x">,</span> <span class="mi">5000</span><span class="x">,</span> <span class="mi">1000</span><span class="x">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span><span class="x">:</span><span class="mf">0.05</span><span class="x">:</span><span class="mf">4.0</span>
+
+<span class="k">for</span> <span class="x">(</span><span class="n">size</span><span class="x">,</span> <span class="n">smpl</span><span class="x">)</span> <span class="k">in</span> <span class="n">zip</span><span class="x">(</span><span class="n">sizes</span><span class="x">,</span> <span class="n">smpls</span><span class="x">)</span>
+    <span class="n">mean</span><span class="x">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sweep</span><span class="x">(</span><span class="n">size</span><span class="x">,</span> <span class="n">T</span><span class="x">,</span> <span class="n">smpl_per_temp</span><span class="o">=</span><span class="n">smpl</span><span class="x">)</span>
+    <span class="n">IJulia</span><span class="o">.</span><span class="n">clear_output</span><span class="x">(</span><span class="n">true</span><span class="x">)</span>
+    <span class="n">println</span><span class="x">(</span><span class="s">"Done size </span><span class="si">$</span><span class="s">size"</span><span class="x">)</span>
+    <span class="n">plot</span><span class="x">(</span><span class="n">T</span><span class="x">,</span> <span class="n">mean</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"</span><span class="si">$</span><span class="s">size × </span><span class="si">$</span><span class="s">size"</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="n">legend</span><span class="x">()</span>
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>Done size 48
+</code></pre>
+</div>
+
+<figure><figcaption>Energy per unit spin on lattices of different size</figcaption><img src="/assets/posts/output_16_0.png" /></figure>
+
+
+
+    </article>
+    <span class="print-footer">Exploring the Ising Model Finite Size Effects using Julia - May 2, 2017 - Nathan Smith</span>
+    <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="mailto:hate@spam.net"><span class="icon-mail"></span></a></li>    
+    
+      <li>
+        <a href="//www.twitter.com/twitter_handle"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="//plus.google.com/+googlePlusName"><span class="icon-googleplus"></span></a>
+      </li>
+    
+      <li>
+        <a href="//github.com/nsmith5"><span class="icon-github"></span></a>
+      </li>
+    
+      <li>
+        <a href="//www.flickr.com/photos/FlickrUserID"><span class="icon-flickr"></span></a>
+      </li>
+    
+      <li>
+        <a href="/feed.xml"><span class="icon-feed"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2017 &nbsp;&nbsp;NATHAN SMITH</span></br> <br>
+<span>This site created with the <a href="//github.com/clayh53/tufte-jekyll">Tufte theme</a> for <a href="//jekyllrb.com">Jekyll</a>.</span> 
+</div>  
+</footer>
+  </body>
+</html>
