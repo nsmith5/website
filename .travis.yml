@@ -1,14 +1,5 @@
-language: go
-go:
-  - 1.8
-install:
-  - go get github.com/magefile/mage
-  - go get -d github.com/gohugoio/hugo
-  - cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
-  - mage vendor
-  - mage install
 script:
-  - hugo
+  - bin/hugo
 deploy:
   provider: s3
   access_key_id: 
