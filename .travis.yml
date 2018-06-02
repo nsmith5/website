@@ -1,9 +1,15 @@
-language: ruby
-rvm:
- - 2.3.3
-
-install: gem install jekyll && gem install s3_website
-script: jekyll build
-after_success: s3_website push
-
-sudo: false
+script:
+  - bin/hugo
+deploy:
+  provider: s3
+  access_key_id: 
+    secure: "CKixry7fv3IfWsKaQT7OW2vRgA3YhPMbYvO6xqiXj21q52GIgymSWo7hVQnO7ilnlEErK12KVRQH4kv6FJDJO4mVgXa7B7StJ4kgI0XIuji3n28fZuf+fxBRlEP8dOZAQLm4sVF7Y3E5vO4xLUWDhNRZS3FIgnp2+r9AK3rsl/UAinTgnK8gP1ZAWqEz4ujMt3cR+MrYt7RE/mj+wBUc5jfwSx2WMiCtob99gSQC5tupKCmiVvNEfJCScuhQFpAAtYQo+BuLw33vPk08fjzcscfPGPRgEEOhoeKrPmNgt5eWUvntUXl4B/o+Q7DfWDaIobGUBP9w/VN9+7VpFPEGIF2LJXf0mTjDyjM+gyu3kmwQSZtHQswD3fEqdMgcdUSEp8dSTvrSXv5QcDtGQBCzDoXLkDgZ9S20DlpyqVBUgSN/5vKFI7WAVdrqGMDUBjwMuusoqBSkUvNUV1PhdZygN3xsPbAKoJgHmjjx2EhkNlWRJysTLjJc8x/Pn0zAsAUqa0GJkoUmuIK2m1lBIJyS3lIi3NpNiGMDu3YfMCDvp0K4BN0L3RfaXj5BV83ZfmKqruKdYiPcozrwZtWneVWk109luCBLK6R3F59OAfdWTyk12b0YqJTP+Txa/gDn1jqWpkr5rUEsXcLNYgAgxa8aPINz2QvSrRGawfMbR45kXTE="
+  secret_access_key: 
+    secure: "hpN3Q3ZPFuL9e7coWBNvU6B7p6ADmFmUVxzhTK74AYtnei4jIHOkbPC4S9nYt2xKADGLTpNUWQthTm24E2IE3bHCpt/e50wSfHWcowjfgE7eOYfZGLdoigz/JHDcEdPdOAVQf8p3VHXRCIiDQZrk1y+4hyzceL2zQymnND2YoWzydMOFzZakN8BJETL35T76JO+rpbpIg9ESrDOAVG2HGOZVfA63y+2u5V7pbd2dOQpitdglVqjSgs5QnFBhJKQAOP2ORAnNZbBjgvBD1j7ndWg7ml/CbqzYfchIWiCwhAEdMipCqdZK+FuzDQNa/V/jAUTMBOiqh4l93eX7FAYbE2I5Z6W4sBEFaRk9fPRpe2XzG2u6ZjZmm75+I33ST8QaEbIkU6w5D7WzE9EUqZxqKGXjoBoqyDeQ5tLJwFJiMlTNOMOVk5pxizWSxiO2mzIElQxc2b4QKh9PoZP3P1GL7qaLyl+txbfeaOWqOOwO8dIxcF/WdNM6kgG7b0mdga3wxHsNcDLrWpse+EDbdRTh1TpDBYFdiKa4+GhInWh4CZ1yGO6M9mUJuXy+S2UgwnTm8uBRGruHBD+HNRmSlgFtH7nd9rSgmIvi+3BB5yNH19iKtq6cfyDA/yirzJrRS5BGaSdx1PKfgBI98yqipGR/2rUnf9vb4PqzLjK7ZhVXy2w="
+  bucket: "nathan-smith.ca"
+  skip_cleanup: true
+  region: "ca-central-1"
+  local_dir: public
+branches:
+  only:
+  - master
