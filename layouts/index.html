@@ -1,0 +1,10 @@
+
+<h1>
+    {{ .Page.Title }}
+</h1>
+
+{{ partial "nav.html" . }}
+
+{{ .Page.Content }}
+
+{{ partial "add-mathjax.html" . }}
