@@ -1,7 +1,6 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-
   <ul>
   {{ range .Data.Pages }}
       <li><a href="{{ .URL }}">{{ .Title }}</a></li>
