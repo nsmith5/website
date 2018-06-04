@@ -1,5 +1,5 @@
 ---
-title: "Home Page"
+title: "Nathan Smith"
 date: 2018-06-01T19:09:30-07:00
 draft: false
 ---

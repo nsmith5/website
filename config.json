@@ -1,8 +1,8 @@
 {
-    "baseURL": "http://nathan-smith.ca",
+    "baseURL": "http://www.nfsmith.ca",
     "languageCode": "en-us",
-    "title": "My New Hugo Site",
+    "title": "Nathan Smith",
     "metaDataFormat": "json",
-	"pygmentsCodeFences": true,
-	"pygmentsStyle": "bw"
+    "pygmentsCodeFences": true,
+    "pygmentsUseClasses": true
 }
