@@ -32,6 +32,11 @@ h3 { font-style: italic;
 	margin-bottom: 1.4rem;
 	line-height: 1; }
 
-.highlight {
-	background-color: inherit;
+/* Navigation */
+nav > div {
+	display: inline-block;
+}
+
+nav > div > ul > li {
+	display: inline-block;
 }
