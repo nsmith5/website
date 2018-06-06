@@ -5,10 +5,10 @@
   </head>
   <body>
     {{ partial "nav.html" . }}
-    {{ block "header" .}}
-    {{ end }}
+    <article class="wrapped">
     {{ block "main" . }}
     {{ end }}
+    </article>
     {{ partial "add-mathjax.html" . }}
   </body>
 </html>

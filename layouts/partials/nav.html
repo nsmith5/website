@@ -1,14 +1,9 @@
 <nav>
-    <div>
-        <h3><a href="/">{{ .Site.Title }}</a></h3>
-    </div>
-    <div>
-        <ul>
-            {{ range .Site.Menus.nav }}
-            <li>
-                <a href="{{ .URL }}">{{ .Name }}</a>
-            </li>
-            {{ end }}
-        </ul>
-    </div>
+    <ul class="wrapped">
+        <li><img src="/icons/favicon-32x32.png"></li>
+        <li><a href="/">{{ .Site.Title }}</a></li>
+        {{ range .Site.Menus.nav }}
+        <li style="float:right"><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+    </ul>
 </nav>

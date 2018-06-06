@@ -1,42 +1,74 @@
-html {
-	font-size: 16px;
-}
-
 body {
-	margin: 0 auto;
-	padding: 0 100px;
-	max-width: 1000px;
+	margin: 0 0;
+	padding: 0 0;
 	font-family: "Palatino", "Palatino Linotype", "Palatino LT STD", "Book Antiqua", "Georgia", "serif";
+	font-size: 16px;
 	background-color: #fffff9;
 	color: #444;
-	font-size: 16px;
 }
 
-h1 { font-weight: 400;
+h1 { 
+	font-weight: 400;
 	margin-top: 4rem;
 	margin-bottom: 1.5rem;
 	font-size: 3.2rem;
-	line-height: 1; }
+	line-height: 1; 
+}
 
-h2 { font-style: italic;
+h2 { 
+	font-style: italic;
 	font-weight: 400;
 	margin-top: 2.1rem;
 	margin-bottom: 1.4rem;
 	font-size: 2.2rem;
-	line-height: 1; }
+	line-height: 1;
+}
 
-h3 { font-style: italic;
+h3 { 
+	font-style: italic;
 	font-weight: 400;
 	font-size: 1.7rem;
 	margin-top: 2rem;
 	margin-bottom: 1.4rem;
-	line-height: 1; }
-
-/* Navigation */
-nav > div {
-	display: inline-block;
+	line-height: 1; 
 }
 
-nav > div > ul > li {
-	display: inline-block;
+/* Wrapping */
+.wrapped {
+	margin: 0 auto;
+	padding: 0 100px;
+	max-width: 1000px;
+}
+
+/* Navigation */
+nav {
+	background-color: #333;
+}
+
+nav img {
+	vertical-align: middle;
+	padding: 8px 8px;
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: #fffff9;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+/* Change the link color to #111 (black) on hover */
+nav li a:hover {
+    background-color: #111;
 }
