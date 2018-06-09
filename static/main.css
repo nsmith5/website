@@ -43,10 +43,6 @@ h3 {
 	max-width: 1000px;
 }
 
-@media width < 400px {
-	background-color: black;
-}
-
 /* Navigation */
 nav {
 	background-color: #333;
@@ -63,7 +59,15 @@ nav ul {
 }
 
 nav li {
-    float: left;
+    float: right;
+}
+
+nav li.icon {
+	float: left;
+}
+
+nav li.title {
+	float: left;
 }
 
 nav li a {
@@ -72,7 +76,7 @@ nav li a {
     text-align: center;
     padding: 14px 16px;
 	text-decoration: none;
-	font-size: 1.4rem;
+	font-size: 1.3rem;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -81,10 +85,20 @@ nav li a:hover {
 }
 
 /* Articles */
-article a:link a:visited {
-	color: inherit;
-}
 
-article a:link a:visited {
-	text-decoration: none;
+
+/* Smaller screens */
+@media (max-width:  715px) {
+	.wrapped {
+		padding: 0 50px;
+	}
+
+	nav .title {
+		display: none;
+	}
+
+	nav li {
+		display: block;
+		float: left;
+	}
 }

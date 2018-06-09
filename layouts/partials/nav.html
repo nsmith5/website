@@ -1,9 +1,9 @@
 <nav>
     <ul class="wrapped">
-        <li><img src="/icons/favicon-32x32.png"></li>
-        <li><a href="/">{{ .Site.Title }}</a></li>
+        <li class="icon"><img style="float:left" src="/icons/favicon-32x32.png"></li>
+        <li class="title"><a href="/">{{ .Site.Title }}</a></li>
         {{ range .Site.Menus.nav }}
-        <li style="float:right"><a href="{{ .URL }}">{{ .Name }}</a></li>
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
     </ul>
 </nav>
