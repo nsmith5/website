@@ -1,5 +1,5 @@
 html {
-	font-size: 16px;
+	font-size: 15px;
 }
 
 body {
@@ -36,6 +36,11 @@ h3 {
 	line-height: 1; 
 }
 
+p, ol, li {
+	font-size: 1.4rem;
+	line-height: 2.0rem;
+}
+
 /* Wrapping */
 .wrapped {
 	margin: 0 auto;
@@ -49,8 +54,7 @@ nav {
 }
 
 nav img {
-	vertical-align: middle;
-	padding: 8px 8px;
+	padding: 12px 8px 0px 8px;
 }
 
 nav ul {
@@ -74,7 +78,7 @@ nav li a {
     display: block;
     color: #fffff9;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px 9px 16px;
 	text-decoration: none;
 	font-size: 1.3rem;
 }
