@@ -1,8 +1,11 @@
+html {
+	font-size: 16px;
+}
+
 body {
 	margin: 0 0;
 	padding: 0 0;
 	font-family: "Palatino", "Palatino Linotype", "Palatino LT STD", "Book Antiqua", "Georgia", "serif";
-	font-size: 16px;
 	background-color: #fffff9;
 	color: #444;
 }
@@ -40,6 +43,10 @@ h3 {
 	max-width: 1000px;
 }
 
+@media width < 400px {
+	background-color: black;
+}
+
 /* Navigation */
 nav {
 	background-color: #333;
@@ -65,10 +72,19 @@ nav li a {
     text-align: center;
     padding: 14px 16px;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 1.4rem;
 }
 
 /* Change the link color to #111 (black) on hover */
 nav li a:hover {
     background-color: #111;
+}
+
+/* Articles */
+article a:link a:visited {
+	color: inherit;
+}
+
+article a:link a:visited {
+	text-decoration: none;
 }
