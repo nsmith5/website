@@ -22,7 +22,6 @@ function energy(S)
     sum(- S .* (circshift(S, (1, 0)) .+ circshift(S, (0, 1))))
 end
 ```
-    energy (generic function with 1 method)
 
 We would like to look at this system in equilibrium so we'll need a method of
 sampling the equilibrium probability distribution. We can do this by
@@ -82,9 +81,6 @@ function step!(S, β)
 end
 ```
 
-    step! (generic function with 1 method)
-
-
 ## Measuring Equilibrium Statistics
 
 Now we'd like to measure equilibrium statistics across a variety of
@@ -114,7 +110,6 @@ function energy_stats(S, β; samples = 100)
     return meanE / length(S), varE / length(S)
 end
 ```
-    energy_stats (generic function with 1 method)
 
 Now we can make a function to do a temperature sweep for lattices of a given
 size over a particular temperature range
@@ -138,7 +133,6 @@ function sweep(N, Trange; smpl_per_temp=100)
     return reverse(means), reverse(vars)
 end
 ```
-    sweep (generic function with 1 method)
 
 ## Visualization
 
@@ -178,8 +172,7 @@ for i in 1:40
 end
 ```
 
-```
-
+<pre style="line-height:1rem">
 ⬛⬛⬜⬜⬜⬜⬛⬛⬛⬜⬜⬜⬜⬜⬛⬜⬜⬜⬜⬛
 ⬛⬜⬛⬜⬛⬛⬛⬛⬜⬛⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜
 ⬛⬜⬜⬜⬜⬜⬜⬜⬛⬛⬛⬛⬜⬜⬛⬛⬜⬜⬜⬜
@@ -200,7 +193,7 @@ end
 ⬛⬛⬜⬛⬜⬜⬜⬛⬛⬛⬜⬛⬜⬛⬛⬛⬛⬜⬛⬛
 ⬛⬛⬛⬛⬜⬜⬜⬜⬜⬛⬛⬜⬛⬜⬛⬜⬜⬜⬛⬛
 ⬛⬛⬛⬛⬜⬛⬜⬛⬜⬜⬜⬛⬜⬛⬛⬜⬜⬛⬛⬛
-```
+</pre>
 
 Lovely! Lets get some results then!
 
@@ -254,7 +247,6 @@ end
 
 legend()
 ```
-    Done size 48
 
 <center>
 <img width="500px" alt="Energy per unit spin on lattices of different size" src="../../img/output_16_0.png"></img>

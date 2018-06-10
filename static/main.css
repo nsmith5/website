@@ -106,3 +106,12 @@ nav li a:hover {
 		float: left;
 	}
 }
+
+/* Code highlights */
+div.highlight {
+	background-color: white;
+	padding: 0 1.0rem;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
