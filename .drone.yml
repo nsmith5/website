@@ -6,4 +6,5 @@ pipeline:
   publish:
     image: plugins/docker
     repo: registry/nsmith/website
+    registry: registry
     tags: latest
