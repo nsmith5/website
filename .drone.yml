@@ -5,4 +5,5 @@ pipeline:
       - bin/hugo
   publish:
     image: plugins/docker
+    repo: nsmith/website
     tags: latest
