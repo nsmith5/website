@@ -3,3 +3,6 @@ pipeline:
     image: alpine
     commands:
       - bin/hugo
+  publish:
+  	image: plugins/docker
+    tags: latest
