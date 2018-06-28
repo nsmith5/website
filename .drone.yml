@@ -6,5 +6,5 @@ pipeline:
   publish:
     image: plugins/docker
     repo: website
-    registry: registry:5000
+    registry: registry.nfsmith.ca
     tags: latest
