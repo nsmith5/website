@@ -5,6 +5,6 @@ pipeline:
       - bin/hugo
   publish:
     image: plugins/docker
-    repo: nsmith/website
-    registry: registry.nfsmith.ca
+    repo: website
+    registry: registry:5000
     tags: latest
