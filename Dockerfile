@@ -1,6 +1,5 @@
 FROM alpine
-WORKDIR /website
-COPY public .
-COPY bin/hugo .
+WORKDIR /www
+COPY . .
 EXPOSE 1313
-CMD ["hugo", "serve"]
+CMD ["bin/hugo", "server", "--bind", "0.0.0.0"]
