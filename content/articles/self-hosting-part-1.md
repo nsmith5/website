@@ -103,8 +103,23 @@ An ingress controller routes traffic to services based on the domain name and
 path requested. This is great because it means we can publish many services on
 the same server and distinguish them by domain.
 
-- Set up wildcard DNS for your domain
-- Show example of ingress resource etc
+If you have a domain name available, you can set this up by making a wild card
+record for you domain and pointing it towards your server. For example, my
+domain is nfsmith.ca so I set up a record for *.nfsmith.ca and directed that
+towards my droplet. This means I can host any subdomain of nfsmith.ca at the 
+droplet (www.nfsmith.ca, code.nfsmith.ca etc etc).
+
+The ingress controller itself is very easy to install. You can choose from a 
+variety of ingress controllers. I'm familiar with HAProxy so I choose one based
+on that. Deploying is as simple as,
+
+```shell
+laptop $ kubectl apply -f kubectl create -f https://raw.githubusercontent.com/jcmoraisjr/haproxy-ingress/master/docs/haproxy-ingress.yaml
+laptop $ kubectl label node server role=ingress-controller
+```
+
+Checkout out the [docs](https://github.com/jcmoraisjr/haproxy-ingress) for more 
+information on configuration.
 
 ## Finishing up
 
