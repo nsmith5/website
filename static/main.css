@@ -1,5 +1,5 @@
 html {
-	font-size: 15px;
+	font-size: 12px;
 }
 
 body {
@@ -115,3 +115,6 @@ div.highlight {
 	border-radius: 3px;
 }
 
+pre.chroma {
+	overflow-x: auto;
+}
