@@ -1,7 +1,7 @@
 ---
 title: "Self Hosting Part 1: Setting up Kubernetes"
 date: 2018-06-28T14:13:28-07:00
-draft: true
+draft: false
 ---
 
 This article is the first in a series about my experience moving away from 
@@ -80,7 +80,29 @@ server $ export KUBECONFIG=/etc/kubernetes/admin.conf
 server $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml # Deploy flannel!
 ```
 
+Finally, we need to remove a taint on the master node to allow pods to run 
+there.
+
+```shell
+server $ kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
 To connect to your cluster remotely copy `/etc/kubernetes/admin.conf` from the
 server and paste it into `/.kube/config` on your local machine.
 
-[Continue here]
+```shell
+laptop $ kubectl get nodes
+NAME        STATUS    ROLES     AGE       VERSION
+server      Ready     master    3d        v1.10.1
+```
+
+## Setting up Ingress
+
+
+
+## Finishing up
+
+At this point its best to reboot the system and make sure everything comes back
+up afterwords. If all goes well, you're ready to start hosting services. Next
+time we'll take a look at hosting our own git repostory and securing services
+with LetsEncrypt certificates.
