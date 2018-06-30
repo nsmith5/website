@@ -98,7 +98,13 @@ server      Ready     master    3d        v1.10.1
 
 ## Setting up Ingress
 
+We have one last thing to set up before our cluster is ready to use: ingress.
+An ingress controller routes traffic to services based on the domain name and
+path requested. This is great because it means we can publish many services on
+the same server and distinguish them by domain.
 
+- Set up wildcard DNS for your domain
+- Show example of ingress resource etc
 
 ## Finishing up
 
