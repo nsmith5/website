@@ -36,7 +36,7 @@ h3 {
 	line-height: 1; 
 }
 
-p, ol, li {
+p, ol, li, td {
 	font-size: 1.4rem;
 	line-height: 2.0rem;
 }

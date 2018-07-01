@@ -1,6 +1,6 @@
 ---
 title: "Self Hosting Part 1: Setting up Kubernetes"
-date: 2018-06-28T14:13:28-07:00
+date: 2018-06-30T14:13:28-07:00
 draft: false
 ---
 

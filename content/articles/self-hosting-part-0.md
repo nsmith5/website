@@ -1,6 +1,6 @@
 ---
-title: "Self Hosting - Part 0"
-date: 2018-06-30T14:12:18-07:00
+title: "Self Hosting Part 0: Motivation"
+date: 2018-06-28T14:12:18-07:00
 draft: false
 ---
 

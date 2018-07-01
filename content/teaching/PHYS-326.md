@@ -1,6 +1,6 @@
 ---
 title: "Statistical Mechanics"
-date: 2018-06-01T20:04:41-07:00
+date: 2017-01-15T20:04:41-07:00
 draft: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Linear Algebra"
-date: 2018-06-01T20:05:01-07:00
+date: 2016-05-05T20:05:01-07:00
 draft: false
 ---
 
