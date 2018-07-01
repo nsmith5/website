@@ -16,7 +16,7 @@ func Logger(inner http.Handler) http.Handler {
 
 		log.Printf(
 			"%s\t%s\t%s\t%s",
-			r.RemoteAddr,
+			r.Header.Get("X-Forwarded-For"),
 			r.Method,
 			r.RequestURI,
 			time.Since(start),
