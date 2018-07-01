@@ -1,5 +1,5 @@
-FROM alpine
-WORKDIR /www
-COPY . .
-EXPOSE 1313
-CMD ["bin/hugo", "server", "--bind", "0.0.0.0"]
+FROM scratch
+ADD public ./public/
+ADD server .
+EXPOSE 3000
+CMD ["/server", "-dir", "public"]

@@ -1,8 +1,12 @@
 pipeline:
-  build:
-    image: alpine
+  build-site:
+    image: jojomi/hugo
     commands:
-      - bin/hugo
+      - hugo
+  build-server:
+    image: golang
+    commands:
+      - CGO_ENABLED=0 go build -o server -ldflags '-s' src/main.go
   publish:
     image: plugins/docker
     repo: registry.nfsmith.ca/website
