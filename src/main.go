@@ -53,6 +53,15 @@ func Logger(inner http.Handler) http.Handler {
 	})
 }
 
+// Cache is a caching middleware
+func Cache(inner http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Cache-Control", "public")
+		w.Header().Add("Cache-Control", "maxage=86400") // One day
+		inner.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	var (
 		dir = flag.String("path", "public", "Path to static site")
