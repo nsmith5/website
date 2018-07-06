@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -57,7 +58,11 @@ func Logger(inner http.Handler) http.Handler {
 func Cache(inner http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Cache-Control", "public")
-		w.Header().Add("Cache-Control", "maxage=86400") // One day
+		if strings.Compare(w.Header().Get("Content-Type"), "text/html") != 0 {
+			w.Header().Add("Cache-Control", "maxage=604800") // 1 Week
+		} else {
+			w.Header().Add("Cache-Control", "maxage=86400") // 1 Day
+		}
 		inner.ServeHTTP(w, r)
 	})
 }
@@ -69,6 +74,7 @@ func main() {
 
 	fs := http.FileServer(http.Dir(*dir))
 	fs = Logger(fs)
+	fs = Cache(fs)
 	http.Handle("/", fs)
 	http.ListenAndServe(":3000", nil)
 }
