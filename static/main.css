@@ -6,6 +6,7 @@ body {
 	margin: 0 0;
 	padding: 0 0;
 	font-family: "Source Sans Pro", "Crimson Text", "EB Garamond", "serif";
+	text-align: justify;
 	background-color: #fffff9;
 	color: #444;
 }

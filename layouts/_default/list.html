@@ -1,11 +1,13 @@
 {{ define "main" }}
   {{ .Content }}
-  <table style="width: 100%">
-  {{ range .Data.Pages }}
+  <center>
+    <table width="95%">
+    {{ range .Data.Pages }}
       <tr>
         <td><a href="{{ .URL }}">{{ .Title }}</a></td>
         <td style="float: right">{{ dateFormat "January 2, 2006" .Date}}</td>
       </tr>
-  {{ end }}
+    {{ end }}
     </table>
+  </center>
 {{ end }}

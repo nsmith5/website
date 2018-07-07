@@ -57,13 +57,14 @@ func Logger(inner http.Handler) http.Handler {
 // Cache is a caching middleware
 func Cache(inner http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		inner.ServeHTTP(w, r)
+
 		w.Header().Add("Cache-Control", "public")
 		if strings.Compare(w.Header().Get("Content-Type"), "text/html") != 0 {
 			w.Header().Add("Cache-Control", "maxage=604800") // 1 Week
 		} else {
 			w.Header().Add("Cache-Control", "maxage=86400") // 1 Day
 		}
-		inner.ServeHTTP(w, r)
 	})
 }
 
