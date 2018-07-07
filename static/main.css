@@ -5,8 +5,7 @@ html {
 body {
 	margin: 0 0;
 	padding: 0 0;
-	font-family: "Source Sans Pro", "Crimson Text", "EB Garamond", "serif";
-	text-align: justify;
+	font-family: "EB Garamond", "serif";
 	background-color: #fffff9;
 	color: #444;
 }
@@ -42,26 +41,40 @@ p, ol, li, td {
 	line-height: 2.0rem;
 }
 
+p {
+	text-align: justify;
+}
+
 /* Article links - Taken from Tufte.css */
 article a:link, article a:visited { color: inherit; }
 
-article a:link { text-decoration: none;
-         background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#333, #333);
-         background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(#333, #333);
-         -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-         -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-         background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-         background-repeat: no-repeat, no-repeat, repeat-x;
-         text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
-         background-position: 0% 93%, 100% 93%, 0% 93%; }
+article a:link { 
+	text-decoration: none;
+    background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#333, #333);
+	background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(#333, #333);
+    -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    background-repeat: no-repeat, no-repeat, repeat-x;
+    text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
+	background-position: 0% 93%, 100% 93%, 0% 93%; 
+}
 
-@media screen and (-webkit-min-device-pixel-ratio: 0) { article a:link { background-position-y: 87%, 87%, 87%; } }
+@media screen and (-webkit-min-device-pixel-ratio: 0) { 
+	article a:link { 
+		background-position-y: 87%, 87%, 87%; 
+	} 
+}
 
-article a:link::selection { text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
-                    background: #b4d5fe; }
+article a:link::selection {
+	text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+	background: #b4d5fe; 
+}
 
-article a:link::-moz-selection { text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
-background: #b4d5fe; }
+article a:link::-moz-selection { 
+	text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+background: #b4d5fe; 
+}
 
 /* Wrapping */
 .wrapped {
@@ -105,14 +118,14 @@ nav li a {
     display: block;
     color: #fffff9;
     text-align: center;
-    padding: 16px 16px 9px 16px;
+    padding: 1.1rem 1.1rem 0.9rem 1.1rem;
 	text-decoration: none;
 	font-size: 1.3rem;
 }
 
 /* Change the link color to #111 (black) on hover */
 nav li a:hover {
-    background-color: #111;
+    background-color: rgb(92, 92, 92);
 }
 
 /* Articles */
@@ -122,6 +135,10 @@ nav li a:hover {
 @media (max-width:  715px) {
 	.wrapped {
 		padding: 0 50px;
+	}
+
+	p {
+		text-align: left;
 	}
 
 	nav .title {

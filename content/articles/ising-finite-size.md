@@ -2,13 +2,14 @@
 title: "Ising Finite Size"
 date: 2018-06-02T09:19:37-07:00
 draft: false
+markup: mmark
 ---
 
 In this post we'll look at the finite size effect in the Ising model. We start
 by stating the energy of the Ising model, 
 
 $$
-E = - J \sum\_{\langle i, j\rangle} s\_i s\_j - H \sum\_{i} s\_i.
+E = - J \sum_{\langle i, j\rangle} s_i s_j - H \sum_{i} s_i.
 $$
 
 Where, $\langle i, j \rangle$ denotes the sum over nearest
@@ -93,7 +94,6 @@ though.
 
 
 ```julia
-
 function energy_stats(S, β; samples = 100)
     # Mean and variance of the energy at temperature β
     
@@ -115,7 +115,6 @@ Now we can make a function to do a temperature sweep for lattices of a given
 size over a particular temperature range
 
 ```julia
-
 function sweep(N, Trange; smpl_per_temp=100)
     
     Trange = reverse(Trange)  
