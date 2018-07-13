@@ -134,7 +134,7 @@ nav li a:hover {
 /* Smaller screens */
 @media (max-width:  715px) {
 	.wrapped {
-		padding: 0 50px;
+		padding: 0 2rem;
 	}
 
 	p {
