@@ -6,7 +6,20 @@
   <body>
   {{ partial "nav.html" . }}
   <article class="wrapped">
-    {{ .Page.Content }}	
+      {{ .Page.Content }}	
   </article>
+  <script>
+  // Connect slider to the temperature of the ising model
+  var slider = document.getElementById("range");
+  slider.oninput = function() {
+    // Set the critical temperature at the midway point
+    value = this.value / 88.1373587019543;
+    fetch('https://ising.nfsmith.ca/', {
+      method: 'POST',
+      body: value,
+    });
+  } 
+  </script>
+  {{ partial "add-mathjax.html" .}}
   </body>
 </html>

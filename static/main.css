@@ -76,6 +76,53 @@ article a:link::-moz-selection {
 background: #b4d5fe; 
 }
 
+/* Ising Model stuff */
+.center {
+	width: 60%;
+	margin: auto;
+}
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+	width: 80%;
+	height: 20px;
+	display: block;
+	margin: 15px auto;
+    background: #fffff9;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 0.9;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+	width: 15px;
+	border-radius: 50%;
+	border: none;
+	height: 15px;
+    background: rgb(129, 46, 46);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	border: none;
+    background: rgb(129, 46, 46);
+    cursor: pointer;
+}
+
 /* Wrapping */
 .wrapped {
 	margin: 0 auto;
@@ -148,6 +195,10 @@ nav li a:hover {
 	nav li {
 		display: block;
 		float: left;
+	}
+
+	.center {
+		width: 85%;
 	}
 }
 
