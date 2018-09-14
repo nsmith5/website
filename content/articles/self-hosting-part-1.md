@@ -1,5 +1,5 @@
 ---
-title: "Self Hosting Part 1: Setting up Kubernetes"
+title: "Self Hosting I: Setting up Kubernetes"
 date: 2018-06-30T14:13:28-07:00
 draft: false
 ---
