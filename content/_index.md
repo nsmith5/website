@@ -22,8 +22,9 @@ Some of my recent projects are:
 
 I also write on occasion. Here are some of my recent articles:
 
-- [Self-Hosting II: Kubernetes](/articles/self-hosting-part-1/)
-- [Self-Hosting I: Motivation](/articles/self-hosting-part-0/)
+- [Self-Hosting II: Git](/articles/self-hosting-part-2/)
+- [Self-Hosting I: Kubernetes](/articles/self-hosting-part-1/)
+- [Self-Hosting 0: Motivation](/articles/self-hosting-part-0/)
 - [Analysing Finite Size effects using the Ising Model and Julia](/articles/ising-finite-size/)
 
 The source for this website and my other software projects can be found at 
