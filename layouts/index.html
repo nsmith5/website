@@ -9,15 +9,92 @@
       {{ .Page.Content }}	
   </article>
   <script>
-  // Connect slider to the temperature of the ising model
-  var slider = document.getElementById("range");
-  slider.oninput = function() {
+  class Ising {
+		constructor(id, width) {
+			this.canvas = document.getElementById(id)
+			this.ctx = this.canvas.getContext("2d")
+			this.img = this.ctx.createImageData(width, width)
+			this.state = new Array(width)
+			for (var i = 0; i < width; i++) {
+				this.state[i] = new Array(width)
+				for (var j = 0; j < width; j++) {
+					this.state[i][j] = Math.random() > 0.5 ? 1 : -1
+				}
+			}
+			this.beta = 0.8 	// inverse temperature
+			this.alpha = 0.2 	// damping coefficient
+			this.width = width 	// size
+		}
+
+		updateBeta(beta) {
+			this.beta = beta
+		}
+
+		step() {
+			var delta, i, j
+			for (i = 0; i < this.width; i++) {
+				for (j = 0; j < this.width; j++) {
+					delta = 2 * this.state[i][j] * (
+						this.state[(i + 1)&(this.width - 1)][j] +
+						this.state[(i - 1)&(this.width - 1)][j] +
+						this.state[i][(j + 1)&(this.width - 1)] +
+						this.state[i][(j - 1)&(this.width - 1)]
+					)
+					if (delta < 0) {
+						if (Math.random() < this.alpha) {
+							this.state[i][j] = -this.state[i][j]
+						}
+					} else {
+						if (Math.random() < this.alpha*Math.exp(-this.beta*delta)) {
+							this.state[i][j] = -this.state[i][j]
+						}
+					}
+				}
+			}
+		}
+
+		render() {
+			var pixel, i, j
+			for (i = 0; i < this.width; i++) {
+				for (j = 0; j < this.width; j++) {
+					pixel = (i * this.width + j) * 4	
+					if (this.state[i][j] > 0) {
+						// Black
+						this.img.data[pixel + 0] = 255
+						this.img.data[pixel + 1] = 255
+						this.img.data[pixel + 2] = 255
+						this.img.data[pixel + 3] = 255
+					} else {
+						// White
+						this.img.data[pixel + 0] = 0
+						this.img.data[pixel + 1] = 0
+						this.img.data[pixel + 2] = 0
+						this.img.data[pixel + 3] = 255
+					}
+				}
+			}
+
+			this.ctx.putImageData(this.img, 0, 0);
+		}
+
+		start(fps) {
+			setInterval(() => {
+				this.step()
+				this.render()
+			}, 1000/fps)
+		}
+	}
+
+	var ising = new Ising("canvas", 512)
+	ising.start(10)
+	console.log("Ising simulation started")
+	
+  	// Connect slider to the temperature of the ising model
+  	var slider = document.getElementById("range");
+  	slider.oninput = function() {
     // Set the critical temperature at the midway point
     value = this.value / 88.1373587019543;
-    fetch('https://ising.nfsmith.ca/', {
-      method: 'POST',
-      body: value,
-    });
+  	ising.updateBeta(value)
   } 
   </script>
   {{ partial "add-mathjax.html" .}}

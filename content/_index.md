@@ -8,8 +8,8 @@ I like to think about, and build things, in the intersection of science and
 technology. Things like this little jittery checker board:
 
 <div class="center">
-    <img width="100%" src="https://ising.nfsmith.ca/"></img>
-    <input type="range" min="0" max="100" value="50" class="slider" id="range">
+	<canvas id="canvas" width="512" height="512"></canvas>
+	<input type="range" min="0" max="100" value="50" class="slider" id="range">
 </div>
 
 Some of my recent projects are:
