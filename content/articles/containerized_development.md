@@ -20,11 +20,11 @@ code I'm running. What do I actually do? Recognizing its a problem I've mostly
 just developed a prejudice against langauges that don't have a good, broad
 standard library and try to keep my dependency tree as small as possible.
 
-There is are a mountain of problems with this. Even if I _did_ vet my
-dependencies after the fact, the package has a chance to run a bunch of code at
-install time on my machine. Now, obviously, the best practice would be to read
-all of the code before installing it, but on the trade off of security and
-convenience, this is rough on convenience.
+There are a mountain of problems with this. Even if I _did_ vet my dependencies
+after the fact, the package has a chance to run a bunch of code at install time
+on my machine. Now, obviously, the best practice would be to read all of the
+code before installing it, but on the trade off of security and convenience,
+this is rough on convenience.
 
 Security considerations aside, its also annoying that development dependencies
 just keep piling up in your system. Every package manager feels like it takes
