@@ -1,15 +1,13 @@
-pipeline:
-  build-site:
-    image: jojomi/hugo
-    commands:
-      - hugo
-  build-server:
-    image: golang
-    commands:
-      - CGO_ENABLED=0 go build -o server -ldflags '-s' src/main.go
-  publish:
-    image: plugins/docker
-    repo: registry.nfsmith.ca/website
-    registry: registry.nfsmith.ca
-    auto_tag: true
-    secrets: [docker_username, docker_password]
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+- name: build site
+  image: jojomi/hugo
+  commands:
+  - hugo
+- name: build server
+  image: golang
+  commands:
+  - CG0_ENABLED=0 go build -s server -ldflags '-s' src/main.go
