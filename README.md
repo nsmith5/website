@@ -1,9 +1,9 @@
 # My Website
 
-[https://www.nfsmith.ca](https://www.nfsmith.ca)
 [![Build Status](https://cloud.drone.io/api/badges/nsmith5/website/status.svg)](https://cloud.drone.io/nsmith5/website)
 
-Source code for my website. Contains a static hugo site. To preview locally run
+Source code for [my website](https://www.nfsmith.ca). Contains a static hugo
+site. To preview locally run
 
 ```shell
 $ hugo server
