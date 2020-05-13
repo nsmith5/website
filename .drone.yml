@@ -1,13 +1,7 @@
 kind: pipeline
-type: kubernetes
 name: default
-
 steps:
 - name: build site
   image: jojomi/hugo
   commands:
   - hugo
-- name: build server
-  image: golang
-  commands:
-  - CG0_ENABLED=0 go build -o server -ldflags '-s' src/main.go
