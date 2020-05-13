@@ -6,7 +6,7 @@
   <body>
   {{ partial "nav.html" . }}
   <article class="wrapped">
-      {{ .Page.Content }}	
+      {{ .Page.Content }}
   </article>
   <script>
   class Ising {
@@ -57,7 +57,7 @@
 			var pixel, i, j
 			for (i = 0; i < this.width; i++) {
 				for (j = 0; j < this.width; j++) {
-					pixel = (i * this.width + j) * 4	
+					pixel = (i * this.width + j) * 4
 					if (this.state[i][j] > 0) {
 						// Black
 						this.img.data[pixel + 0] = 255
@@ -88,14 +88,14 @@
 	var ising = new Ising("canvas", 512)
 	ising.start(10)
 	console.log("Ising simulation started")
-	
+
   	// Connect slider to the temperature of the ising model
   	var slider = document.getElementById("range");
   	slider.oninput = function() {
     // Set the critical temperature at the midway point
     value = this.value / 88.1373587019543;
   	ising.updateBeta(value)
-  } 
+  }
   </script>
   {{ partial "add-mathjax.html" .}}
   </body>

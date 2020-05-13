@@ -91,4 +91,4 @@ the back!
 I've been pretty happy with this workflow, so I've started to compile some
 container recipes and aliases for this purpose in a repository. If you're
 interested in these tools take a look at
-[code.nfsmith.ca/nsmith/containers](https://code.nfsmith.ca/nsmith/containers).
+[github.com/nsmith5/containers](https://github.com/nsmith5/containers).

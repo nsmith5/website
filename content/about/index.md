@@ -5,13 +5,18 @@ draft: false
 menu: "nav"
 ---
 
-<img width="200px" src="../img/me.png"></img>
+<img width="200px" src="/img/me.png"></img>
 
-I'm a MSc student in Condensed Matter Theory the Department of Physics at McGill University. My specific interests are in solidification of pure and alloy systems including the following topics:
+I'm a open source software enthusiast. I like
 
-* Novel kinetic pathways in alloy systems
-* Formation of secondary phases and other nonequilibrium phases
-* Building quantitive theories of solidification at diffusive time scales
-* Computational methods for Nonlinear Langevin equations
+* Infrastructure problems
+* Statistical Physics
+* Digital autonomy and self-hosting
+* Baysian modelling
+* Trying to perfect my piri piri chicken recipe
 
-If you're interested in these, or other, topics in classical condensed matter check our the works of my advisor and others in the research group [here](http://www.physics.mcgill.ca/~provatas/.index.html)
+If you'd like to collaborate on projects, you can find me here:
+
+* [Keybase](https://keybase.io/nfsmith)
+* [Github](https://github.com/nsmith5)
+

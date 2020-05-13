@@ -14,10 +14,10 @@ technology. Things like this little jittery checker board:
 
 Some of my recent projects are:
 
- - [Go-Ising: Ising model with real-time visualization and temperature API](https://code.nfsmith.ca/nsmith/go-ising)
+ - [Go-Ising: Ising model with real-time visualization and temperature API](https://github.com/nsmith5/go-ising)
  - [Maxima.jl: Symbolic computing in Julia using Maxima](https://github.com/nsmith5/maxima.jl)
- - [Motion JPEG Stream in Go](https://code.nfsmith.ca/nsmith/mjpeg)
- - [Self-Hosting Infrastructure using Kubernetes](https://code.nfsmith.ca/nsmith/kubernetes-resources)
+ - [Motion JPEG Stream in Go](https://github.com/nsmith5/mjpeg)
+ - [Self-Hosting Infrastructure using Kubernetes](https://github.com/nsmith5/kubernetes-resources)
  - [$\phi^4$ Simulation GUI using GTK](https://github.com/nsmith5/Model-A-Simulation)
 
 I also write on occasion. Here are some of my recent articles:
@@ -28,4 +28,4 @@ I also write on occasion. Here are some of my recent articles:
 - [Analysing Finite Size effects using the Ising Model and Julia](/articles/ising-finite-size/)
 
 The source for this website and my other software projects can be found at 
-[code.nfsmith.ca](https://code.nfsmith.ca).
+[Github](https://github.com/nsmith5).
