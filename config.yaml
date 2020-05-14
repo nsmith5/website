@@ -1,0 +1,9 @@
+baseURL: https://www.nfsmith.ca/
+languageCode: en-us
+title: Nathan Smith
+pygmentsCodeFences: true
+pygmentsUseClasses: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

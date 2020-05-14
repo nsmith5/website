@@ -4,7 +4,7 @@
     <table width="95%">
     {{ range .Data.Pages }}
       <tr>
-        <td><a href="{{ .URL }}">{{ .Title }}</a></td>
+        <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
         <td style="float: right">{{ dateFormat "January 2, 2006" .Date}}</td>
       </tr>
     {{ end }}

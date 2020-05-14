@@ -2,11 +2,10 @@
 title: "Ising Finite Size"
 date: 2018-06-02T09:19:37-07:00
 draft: false
-markup: mmark
 ---
 
 In this post we'll look at the finite size effect in the Ising model. We start
-by stating the energy of the Ising model, 
+by stating the energy of the Ising model,
 
 $$
 E = - J \sum_{\langle i, j\rangle} s_i s_j - H \sum_{i} s_i.
@@ -41,7 +40,7 @@ $$
 
 We can consider one Markov step to be choosing a spin at random from the
 lattice and then flipping it with a probability consistent with the Metropolis
-transition frequency. 
+transition frequency.
 
 If we want to try flipping all the spins at once, we can do that too with a few
 caveats. If we use the Metropolis transition rates as they are currently
@@ -57,27 +56,27 @@ $$
 
 ```julia
 
-# Flip a spin with the modified Metropolis rate 
+# Flip a spin with the modified Metropolis rate
 function flip(s, ΔE, β)
     # α = 0.3
     if ΔE < 0
         rand() < 0.3 ? (return -s) : (return s)
     else
-        rand() < 0.3 * exp(- β * ΔE) ? (return -s) : 
+        rand() < 0.3 * exp(- β * ΔE) ? (return -s) :
             (return s)
     end
 end
 
 # Step Lattice one Markov step forward in "time"
 function step!(S, β)
-    ΔE = 2. * S .* (circshift(S, (0, 1)) .+ 
+    ΔE = 2. * S .* (circshift(S, (0, 1)) .+
                    circshift(S, (0, -1)) .+
                    circshift(S, (1, 0)) .+
                    circshift(S, (-1, 0)))
 
     for i in eachindex(S)
         S[i] = flip(S[i], ΔE[i], β)
-    end    
+    end
     return
 end
 ```
@@ -96,17 +95,17 @@ though.
 ```julia
 function energy_stats(S, β; samples = 100)
     # Mean and variance of the energy at temperature β
-    
+
     energies = Float64[]
-    
+
     for sample in 1:samples
         step!(S, β)
         push!(energies, energy(S))
     end
-   
+
     meanE = mean(energies)
     varE = mean((i - meanE)^2 for i in energies)
-    
+
     return meanE / length(S), varE / length(S)
 end
 ```
@@ -116,19 +115,19 @@ size over a particular temperature range
 
 ```julia
 function sweep(N, Trange; smpl_per_temp=100)
-    
-    Trange = reverse(Trange)  
-    
+
+    Trange = reverse(Trange)
+
     S = rand([1.0, -1.0], (N, N))
     means = Float64[]
     vars = Float64[]
-    
+
     for (i, T) in enumerate(Trange)
         m, v = energy_stats(S, T^(-1), samples=smpl_per_temp)
         push!(means, m)
         push!(vars, v)
     end
-    
+
     return reverse(means), reverse(vars)
 end
 ```
@@ -162,12 +161,12 @@ S = rand([1.0, -1.0], (20, 20))
 T = 3.0
 
 for i in 1:40
-    
+
     step!(S, 1.0/T)
     IJulia.clear_output(true)
     pprint(S)
-    
-    sleep(0.1)    
+
+    sleep(0.1)
 end
 ```
 
@@ -213,10 +212,10 @@ Cᵥ = vars ./ T.^2;
 Performing a temperature sweep on a 20 x 20 lattice with 20000 samples per
 temperature, we see the characteristic divergence of the heat capacity around
 $ T_c $. Note that the theoretical result for $ T_c $
-in the thermodynamic limit is, 
+in the thermodynamic limit is,
 
 $$
-T_c = \frac{2}{\ln\left(2 + \sqrt{2}\right)} \approx 2.2691...  
+T_c = \frac{2}{\ln\left(2 + \sqrt{2}\right)} \approx 2.2691...
 $$
 
 <center>
