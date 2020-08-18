@@ -15,11 +15,11 @@ time, you might be starting to notice your SRE team is screaming for
 resources and has starting becoming a sort of glue team that needs to
 understand how every microservice works to debug nasty distributed failures.
 
-Once you start down the microservice pathway, its natural to see organic
-growth happen in which more and more services get added on. Caching systems,
-queues, bespoke microservices can all start to be added to a growing soup of
-interdependency until you get to the point that its just impossible for run
-your product on a laptop. Once you're there, the nasty drop off into slow
+Once you start down the microservice pathway, its natural to see organic growth
+happen in which more and more services get added on. Caching systems, queues,
+bespoke microservices can all start to be added to a growing soup of
+interdependency until you get to the point that its just impossible to run your
+product on a laptop. Once you're there, the nasty drop off into slow
 development iteration is inevitable.
 
 How can we get around this? I think one approach is to insist that your
