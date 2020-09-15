@@ -22,10 +22,11 @@ Some of my recent projects are:
 
 I also write on occasion. Here are some of my recent articles:
 
+- [Using PGP Keys for SSH on Fedora](/articles/gpg-ssh/)
+- [Designing An Augmented Backus-Naur Form Parser Generator](/articles/abnf-parser/)
+- [Monolith by Default, Microservice with Configuration](/articles/monolith_by_default/)
+- [Containerized Development Tools](/articles/containerized_development/)
 - [Self-Hosting II: Git](/articles/self-hosting-part-2/)
-- [Self-Hosting I: Kubernetes](/articles/self-hosting-part-1/)
-- [Self-Hosting 0: Motivation](/articles/self-hosting-part-0/)
-- [Analysing Finite Size effects using the Ising Model and Julia](/articles/ising-finite-size/)
 
 The source for this website and my other software projects can be found at 
 [Github](https://github.com/nsmith5).
