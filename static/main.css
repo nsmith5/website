@@ -1,178 +1,179 @@
 html {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 body {
-	margin: 0 0;
-	padding: 0 0;
-	font-family: "EB Garamond", "serif";
-	background-color: #fffff9;
-	color: #444;
+  margin: 0 0;
+  padding: 0 0;
+  font-family: "Courier", "monospace";
 }
 
 h1 { 
-	font-weight: 400;
-	margin-top: 4rem;
-	margin-bottom: 1.5rem;
-	font-size: 3.2rem;
-	line-height: 1; 
+  font-family: "EB Garamond", "serif";
+  font-weight: 400;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  font-size: 3.2rem;
+  line-height: 1; 
 }
 
 h2 { 
-	font-style: italic;
-	font-weight: 400;
-	margin-top: 3.1rem;
-	margin-bottom: 1.4rem;
-	font-size: 2.2rem;
-	line-height: 1;
+  font-family: "EB Garamond", "serif";
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 3.1rem;
+  margin-bottom: 1.4rem;
+  font-size: 2.2rem;
+  line-height: 1;
 }
 
-h3 { 
-	font-style: italic;
-	font-weight: 400;
-	font-size: 1.7rem;
-	margin-top: 2rem;
-	margin-bottom: 1.4rem;
-	line-height: 1; 
+h3 {
+  font-family: "EB Garamond", "serif";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  margin-bottom: 1.4rem;
+  line-height: 1; 
 }
 
 p, ol, li, td {
-	font-size: 1.4rem;
-	line-height: 2.0rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 
 p {
-	text-align: justify;
+  text-align: justify;
 }
 
 /* Article links - Taken from Tufte.css */
 article a:link, article a:visited { color: inherit; }
 
 article a:link { 
-	text-decoration: none;
-    background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#333, #333);
-	background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(#333, #333);
-    -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    background-repeat: no-repeat, no-repeat, repeat-x;
-    text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
-	background-position: 0% 93%, 100% 93%, 0% 93%; 
+  text-decoration: none;
+  background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#333, #333);
+  background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(#333, #333);
+  -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
+  background-position: 0% 93%, 100% 93%, 0% 93%; 
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) { 
-	article a:link { 
-		background-position-y: 87%, 87%, 87%; 
-	} 
+  article a:link { 
+    background-position-y: 87%, 87%, 87%; 
+  } 
 }
 
 article a:link::selection {
-	text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
-	background: #b4d5fe; 
+  text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+  background: #b4d5fe; 
 }
 
 article a:link::-moz-selection { 
-	text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+  text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
 background: #b4d5fe; 
 }
 
 /* Ising Model stuff */
 .center {
-	width: 51%;
-	margin: auto;
+  width: 51%;
+  margin: auto;
 }
 
 .slidecontainer {
-    width: 100%;
+  width: 100%;
 }
 
 .slider {
-    -webkit-appearance: none;
-	width: 100%;
-	height: 20px;
-	display: block;
-	margin: 0px auto;
-    background: #fffff9;
-    outline: none;
-    opacity: 0.8;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  display: block;
+  margin: 0px auto;
+  background: #fffff9;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
 }
 
 .slider:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-	width: 15px;
-	border-radius: 50%;
-	border: none;
-	height: 15px;
-    background: rgb(129, 46, 46);
-    cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  border-radius: 50%;
+  border: none;
+  height: 15px;
+  background: rgb(129, 46, 46);
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 15px;
-	height: 15px;
-	border-radius: 50%;
-	border: none;
-    background: rgb(129, 46, 46);
-    cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: none;
+  background: rgb(129, 46, 46);
+  cursor: pointer;
 }
 
 /* Wrapping */
 .wrapped {
-	margin: 0 auto;
-	padding: 0 100px;
-	max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 100px;
+  max-width: 1000px;
 }
 
 article.wrapped {
-	padding-top: 2rem;
-	padding-bottom: 10rem;
+  padding-top: 2rem;
+  padding-bottom: 10rem;
 }
 
 /* Navigation */
 nav {
-	background-color: #333;
+  background-color: #333;
 }
 
 nav img {
-	padding: 12px 8px 0px 8px;
+  padding: 12px 8px 0px 8px;
 }
 
 nav ul {
-    list-style-type: none;
-    overflow: hidden;
+  list-style-type: none;
+  overflow: hidden;
 }
 
 nav li {
-    float: right;
+  float: right;
 }
 
 nav li.icon {
-	float: left;
+  float: left;
 }
 
 nav li.title {
-	float: left;
+  float: left;
 }
 
 nav li a {
-    display: block;
-    color: #fffff9;
-    text-align: center;
-    padding: 1.1rem 1.1rem 0.9rem 1.1rem;
-	text-decoration: none;
-	font-size: 1.3rem;
+  display: block;
+  color: #fffff9;
+  text-align: center;
+  padding: 1.4rem 1.1rem 0.9rem 1.1rem;
+  text-decoration: none;
+  font-size: 1.3rem;
 }
 
 /* Change the link color to #111 (black) on hover */
 nav li a:hover {
-    background-color: rgb(92, 92, 92);
+  background-color: rgb(92, 92, 92);
 }
 
 /* Articles */
@@ -180,42 +181,42 @@ nav li a:hover {
 
 /* Smaller screens */
 @media (max-width:  715px) {
-	.wrapped {
-		padding: 0 2rem;
-	}
+  .wrapped {
+    padding: 0 2rem;
+  }
 
-	p {
-		text-align: left;
-	}
+  p {
+    text-align: left;
+  }
 
-	nav .title {
-		display: none;
-	}
+  nav .title {
+    display: none;
+  }
 
-	nav li {
-		display: block;
-		float: left;
-	}
+  nav li {
+    display: block;
+    float: left;
+  }
 
-	.center {
-		width: 85%;
-	}
+  .center {
+    width: 85%;
+  }
 }
 
 /* Code highlights */
 div.highlight {
-	background-color: white;
-	padding: 0 1.0rem;
-	border: 1px solid black;
-	border-radius: 3px;
+  background-color: white;
+  padding: 0 1.0rem;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 pre.chroma {
-	overflow-x: auto;
+  overflow-x: auto;
 }
 
 code {
-	font-family: "Source Code Pro", monospace;
-	font-size: 1rem;
-	background-color: white;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1rem;
+  background-color: white;
 }
