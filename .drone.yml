@@ -1,7 +1,19 @@
 kind: pipeline
+type: kubernetes
 name: default
 steps:
 - name: build site
   image: jojomi/hugo
   commands:
   - hugo
+steps:
+- name: docker  
+  image: plugins/docker
+  settings:
+    username:
+	  from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: registry.nfsmith.ca/website
+    registry: registry.nfsmith.ca
+    auto_tag: true
