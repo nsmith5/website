@@ -1,6 +1,6 @@
 ---
 title: "Taking the bite out of x509 certificates with the step CLI"
-date: 2022-01-22T10:49:14-08:00
+date: 2022-01-16T12:22:32-08:00
 draft: false
 ---
 
@@ -12,12 +12,12 @@ and to encrypt traffic once trust is established using TLS.
 The defacto developer tooling in this space is `openssl`. `openssl` is a
 cryptograph swiss army knife. If you need to get something done in the broad
 space of cryptography, `openssl` _can_ do it. The only problem is figuring
-the right magical incantation to make it happen.
+out the right magical incantation to make it happen.
 
 I, like many folks I imagine, have an every growing personal wiki page of how
 to get stuff done with openssl. Here are some of the highlights from mine:
 
-```
+```bash
 # Connect to a client using TLS (dumps a mountain of information on 
 # the entire handshake process)
 openssl s_client -connect example.com:443
@@ -51,7 +51,7 @@ thing with `openssl` is just getting all the flags and things just right.
 Sometimes you'll get lucky with your search engine-fu and find your use case
 perfectly documented, but alas it didn't get so lucky.
 
-## Enter the `step` CLI
+## Enter the step CLI
 
 The `step` CLI is [newer crypto swiss army
 knife](https://smallstep.com/blog/zero-trust-swiss-army-knife/). I'd heard of
@@ -71,7 +71,7 @@ forum](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.6.1.pdf)
 Alright so good tools make the easy stuff easy right? Lets take a look at
 how `step` makes the easy use cases easy. A simple self-signed certificate:
 
-```
+```bash
 # Generate self-signed certificate
 step certificate create --profile self-signed --subtle subject cert.pem key.pem
 
@@ -106,19 +106,18 @@ a particular corner case. Indeed my original test data use case requires
 - Each intermediate CA needs to have the code signing extended key usage flag set
 
 This is because the application I was working on [must issue code signing
-certificates](https://github.com/sigstore/fulcio/) issues code signing
-certificates and in accordance with the CAB forum we should have all
-intermediates share the extended key usages (EKU) that is will issue to leaf
-certificates. This is called EKU chaining.
+certificates](https://github.com/sigstore/fulcio/) and in accordance with the
+CAB forum we need to have all intermediates share the extended key usages (EKU)
+that they will issue to leaf certificates. This is called EKU chaining.
 
 This is where we start to use the templating system of `step`. In fact, the
-profiles used above were simply preset templates. To start we need to create
-a root CA with max path length = 2. This ensures that the number of hops to the
+profiles used above were simply preset templates. To start we need to create a
+root CA with max path length = 2. This ensures that the number of hops to the
 leaf certificate is at most 3 (yeah weird, but its one of those off by one
 moments you know and love from computer science). This is achieved with the
 following template and `step` invocation:
 
-```
+```bash
 cat <<EOF > root.tpl
 {
    "subject": {
@@ -141,7 +140,7 @@ step certificate create --template root.tpl root root.cert.pem root.key.pem
 Now we create the intermediates, again using the templating system to control EKU
 as desired:
 
-```
+```bash
 cat <<EOF > intermediate1.tpl
 {
    "subject": {
