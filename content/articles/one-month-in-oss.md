@@ -5,8 +5,8 @@ draft: false
 ---
 
 Roughly one month ago, I left my job to work in open source. This is second
-time open source had a hand in me quitting something big and I'm hoping that
-this time is the last.
+time open source had a hand in me quitting something big and I think this time
+is the last.
 
 ## Leaving academia
 
